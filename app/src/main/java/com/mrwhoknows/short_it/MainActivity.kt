@@ -19,8 +19,7 @@ class MainActivity : ComponentActivity() {
             ShortItTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
                     Greeting("Android")
                 }
@@ -41,3 +40,23 @@ fun DefaultPreview() {
         Greeting("Android")
     }
 }
+
+/*
+    lifecycleScope.launch(Dispatchers.IO) {
+            val dao = Room.databaseBuilder(
+                this@MainActivity.applicationContext, ShortItRoomDb::class.java, "short_it.db"
+            ).build().shortItDao()
+
+            dao.insertAll(
+                ShortItEntity(
+                    id = Random().nextLong(),
+                    title = "Title ${System.currentTimeMillis() / 10000}",
+                    shortUrl = "helloWorld",
+                    longUrl = "https://mrwhoknows.com",
+                    tags = (0..Random().nextInt(12)).map { "tag$it" }.toSet()
+                )
+            )
+            val things = dao.getAll().map { it.toModel() }
+            Log.d(TAG, "onCreate: $things")
+        }
+ */
